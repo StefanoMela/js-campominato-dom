@@ -10,6 +10,7 @@
 const cellsContainer = document.getElementById("box-target");
 const gridButton = document.getElementById("grid-button");
 const difficultySelect = document.getElementById("difficulty");
+let bombs = [];
 
 // CREAZIONE ARRAY GENERALE
 
@@ -27,6 +28,8 @@ gridButton.addEventListener("click", () => {
     let totalCells = parseInt(difficultySelect.value);
     const whitelist = generateArray(1, totalCells, 1);
     generateGrid(totalCells, cellsContainer, whitelist);
+    bombs = bombsArray(totalCells);
+    console.log(bombs);
 });
 
 // CREAZIONE GRIGLIA
@@ -60,6 +63,9 @@ function createCell(cellsContainer, i, totalCells) {
         myCell.innerText = index;
         myCell.classList.add(index % 2 == 0 ? "background-even" : "background-odd");
         console.log("Hai cliccato il numero " + i);
+        if (bombs.includes(i)) {
+            alert ("Bomba");
+        };
     });
 
     cellsContainer.append(myCell);
@@ -73,4 +79,18 @@ function generateRandomNumber(min, max) {
     return randomNumber;
 };
 
-// GENERAZIONE ARRAY BOMBE 
+// GENERAZIONE ARRAY BOMBE
+
+function bombsArray (max) {
+    const bombs = [];
+    while (bombs.length < 16) {
+      let randomNumber = generateRandomNumber (1, max);
+
+      if (!bombs.includes(randomNumber))
+      bombs.push(randomNumber)
+    };
+
+    return bombs;
+};
+
+function endGame () {};
