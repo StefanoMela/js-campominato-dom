@@ -2,7 +2,15 @@
 
 const cellsContainer = document.getElementById("box-target");
 const gridButton = document.getElementById("grid-button");
-let totalCells = 10 * 10;
+const difficultySelect = document.getElementById("difficulty");
+
+// GRIGLIA + WHITELIST ON CLICK
+
+gridButton.addEventListener("click", () => {
+    let totalCells = parseInt(difficultySelect.value);
+    const whitelist = generateArray(totalCells);
+    generateGrid(totalCells, cellsContainer, whitelist);
+});
 
 // CREAZIONE ARRAY
 
@@ -23,18 +31,19 @@ function generateGrid(totalCells, cellsContainer, whitelist) {
         const randomIndex = Math.floor(Math.random() * whitelist.length);
         const randomValue = whitelist[randomIndex];
         whitelist.splice(randomIndex, 1);
-        createCell(cellsContainer, randomValue);
+        createCell(cellsContainer, randomValue, totalCells);
     };
 };
 
 // CREAZIONE CELLA
 
-function createCell(cellsContainer, i) {
+function createCell(cellsContainer, i, totalCells) {
 
     const myCell = document.createElement("div");
     // myCell.innerText = index;
     myCell.setAttribute("data-index", i)
-    myCell.classList.add("classic-box");
+    myCell.classList.add("cell");
+    myCell.classList.add("cell-" + totalCells);
 
 // EVENT LISTENER CELLA
 
@@ -44,22 +53,15 @@ function createCell(cellsContainer, i) {
         myCell.classList.add(index % 2 == 0 ? "background-even" : "background-odd");
         console.log("Hai cliccato il numero " + i);
     });
-
+    
     cellsContainer.append(myCell);
     return myCell;
 };
 
-// WHITELIST ON LOAD
+// // WHITELIST ON LOAD
 
-const whitelist = generateArray(totalCells);
+// const whitelist = generateArray(totalCells);
 
-// GRIGLIA ON LOAD
+// // GRIGLIA ON LOAD
 
-generateGrid(totalCells, cellsContainer, whitelist);
-
-// GRIGLIA + WHITELIST ON CLICK
-
-gridButton.addEventListener("click", () => {
-    const whitelist = generateArray(totalCells);
-    generateGrid(totalCells, cellsContainer, whitelist);
-});
+// generateGrid(totalCells, cellsContainer, whitelist);

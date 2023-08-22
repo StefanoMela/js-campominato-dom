@@ -3,9 +3,15 @@ body {
     background-color: #061c4cdb;
 }
 
-.classic-box {
+#box-target {
 
-    width: calc((100% / 10) - 1px);
+    max-width: 700px;
+    margin: 0 auto;
+    padding: 0;
+}
+
+.cell {
+
     aspect-ratio: 1;
     border: 1px solid white;
     display: flex;
@@ -13,6 +19,21 @@ body {
     align-items: center;
     cursor: pointer;
 }
+
+.cell-100 {
+    width: calc((100% / 10) - 1px);
+}
+
+.cell-81 {
+
+    width: calc(100% / 9);
+}
+
+.cell-49 {
+
+    width: calc(100% / 7);
+}
+
 
 .background-even {
 
