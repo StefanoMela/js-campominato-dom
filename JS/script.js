@@ -11,6 +11,7 @@ const cellsContainer = document.getElementById("box-target");
 const gridButton = document.getElementById("grid-button");
 const difficultySelect = document.getElementById("difficulty");
 let bombs = [];
+let userScore = [];
 
 // CREAZIONE ARRAY GENERALE
 
@@ -64,7 +65,10 @@ function createCell(cellsContainer, i, totalCells) {
         myCell.classList.add(index % 2 == 0 ? "background-even" : "background-odd");
         console.log("Hai cliccato il numero " + i);
         if (bombs.includes(i)) {
-            alert ("Bomba");
+            alert ("Spiaze, hai perso");
+            cellsContainer.innerHTML = "";
+        } else {
+            userScore.push(userClick);
         };
     });
 
