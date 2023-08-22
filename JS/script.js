@@ -1,3 +1,11 @@
+/**
+// WHITELIST ON LOAD
+// const whitelist = generateArray(totalCells);
+// GRIGLIA ON LOAD
+// generateGrid(totalCells, cellsContainer, whitelist);
+*/
+
+
 // ELEMENTI UTILI
 
 const cellsContainer = document.getElementById("box-target");
@@ -57,11 +65,3 @@ function createCell(cellsContainer, i, totalCells) {
     cellsContainer.append(myCell);
     return myCell;
 };
-
-// // WHITELIST ON LOAD
-
-// const whitelist = generateArray(totalCells);
-
-// // GRIGLIA ON LOAD
-
-// generateGrid(totalCells, cellsContainer, whitelist);
