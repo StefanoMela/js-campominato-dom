@@ -5,38 +5,37 @@
 // generateGrid(totalCells, cellsContainer, whitelist);
 */
 
-
 // ELEMENTI UTILI
 
 const cellsContainer = document.getElementById("box-target");
 const gridButton = document.getElementById("grid-button");
 const difficultySelect = document.getElementById("difficulty");
 
-// GRIGLIA + WHITELIST ON CLICK
+// CREAZIONE ARRAY GENERALE
 
-gridButton.addEventListener("click", () => {
-    let totalCells = parseInt(difficultySelect.value);
-    const whitelist = generateArray(totalCells);
-    generateGrid(totalCells, cellsContainer, whitelist);
-});
-
-// CREAZIONE ARRAY
-
-function generateArray(totalCells) {
+function generateArray(from, to, step) {
     let whitelist = [];
-    for (let i = 1; i <= totalCells; i++) {
+    for (let i = from; i <= to; i += step) {
         whitelist.push(i);
     }
     return whitelist;
 };
+
+// GRIGLIA + WHITELIST ON CLICK
+
+gridButton.addEventListener("click", () => {
+    let totalCells = parseInt(difficultySelect.value);
+    const whitelist = generateArray(1, totalCells, 1);
+    generateGrid(totalCells, cellsContainer, whitelist);
+});
 
 // CREAZIONE GRIGLIA
 
 function generateGrid(totalCells, cellsContainer, whitelist) {
     cellsContainer.innerHTML = "";
 
-    while(whitelist.length){
-        const randomIndex = Math.floor(Math.random() * whitelist.length);
+    while (whitelist.length) {
+        const randomIndex = generateRandomNumber(0, whitelist.length - 1);
         const randomValue = whitelist[randomIndex];
         whitelist.splice(randomIndex, 1);
         createCell(cellsContainer, randomValue, totalCells);
@@ -53,7 +52,8 @@ function createCell(cellsContainer, i, totalCells) {
     myCell.classList.add("cell");
     myCell.classList.add("cell-" + totalCells);
 
-// EVENT LISTENER CELLA
+
+    // EVENT LISTENER CELLA
 
     myCell.addEventListener("click", () => {
         const index = parseInt(myCell.getAttribute("data-index"));
@@ -61,7 +61,16 @@ function createCell(cellsContainer, i, totalCells) {
         myCell.classList.add(index % 2 == 0 ? "background-even" : "background-odd");
         console.log("Hai cliccato il numero " + i);
     });
-    
+
     cellsContainer.append(myCell);
     return myCell;
 };
+
+// GENERAZIONE NUMERO RANDOMICO
+
+function generateRandomNumber(min, max) {
+    const randomNumber = Math.floor(Math.random() * (max - min + 1) + min);
+    return randomNumber;
+};
+
+// GENERAZIONE ARRAY BOMBE 
