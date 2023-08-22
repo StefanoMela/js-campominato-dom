@@ -11,7 +11,10 @@ const cellsContainer = document.getElementById("box-target");
 const gridButton = document.getElementById("grid-button");
 const difficultySelect = document.getElementById("difficulty");
 let bombs = [];
-let userScore = [];
+let userScore = 0;
+
+// PUNTEGGIO
+
 
 // CREAZIONE ARRAY GENERALE
 
@@ -65,10 +68,12 @@ function createCell(cellsContainer, i, totalCells) {
         myCell.classList.add(index % 2 == 0 ? "background-even" : "background-odd");
         console.log("Hai cliccato il numero " + i);
         if (bombs.includes(i)) {
-            alert ("Spiaze, hai perso");
+            alert ("Spiaze, hai perso!" + " il tuo punteggio è: " + userScore);
             cellsContainer.innerHTML = "";
+            userScore = 0;
+            bombs = [];
         } else {
-            userScore.push(userClick);
+            userScore++;
         };
     });
 
