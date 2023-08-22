@@ -26,12 +26,12 @@ body {
 
 .cell-81 {
 
-    width: calc(100% / 9);
+    width: calc((100% / 9) - 1px);
 }
 
 .cell-49 {
 
-    width: calc(100% / 7);
+    width: calc((100% / 7) - 1px);
 }
 
 

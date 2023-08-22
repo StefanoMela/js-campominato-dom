@@ -54,7 +54,7 @@ function generateGrid(totalCells, cellsContainer, whitelist) {
 function createCell(cellsContainer, i, totalCells) {
 
     const myCell = document.createElement("div");
-    // myCell.innerText = index;
+    // myCell.innerText = i;
     myCell.setAttribute("data-index", i)
     myCell.classList.add("cell");
     myCell.classList.add("cell-" + totalCells);
@@ -72,8 +72,10 @@ function createCell(cellsContainer, i, totalCells) {
             cellsContainer.innerHTML = "";
             userScore = 0;
             bombs = [];
-        } else {
+        } else if (!bombs.includes(i) && totalCells - bombs != 0){
             userScore++;
+        } else {
+            alert ("Hai vinto, non è scoppiata nessuna bomba!")
         };
     });
 
