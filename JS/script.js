@@ -65,9 +65,10 @@ function createCell(cellsContainer, i, totalCells) {
     myCell.addEventListener("click", () => {
         const index = parseInt(myCell.getAttribute("data-index"));
         myCell.innerText = index;
-        myCell.classList.add(index % 2 == 0 ? "background-even" : "background-odd");
+        myCell.classList.add("background-even");
         console.log("Hai cliccato il numero " + i);
         if (bombs.includes(i)) {
+            myCell.classList.add("bomb-bgc");
             alert ("Spiaze, hai perso!" + " il tuo punteggio è: " + userScore);
             cellsContainer.innerHTML = "";
             userScore = 0;
